@@ -1,0 +1,20 @@
+.color-swatches label{
+    border: none !important;
+    padding: 15px !important;    
+}
+.color-swatches input[type=radio]:checked+label:after{
+    border: 1px solid #fff !important;
+    background: #fff !important;
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50% !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    margin: auto !important;
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+
+}

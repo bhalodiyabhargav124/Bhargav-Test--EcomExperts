@@ -149,7 +149,10 @@
                 {%- if forloop.index > 2 -%}
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
+                {% if product.tags contains 'bundle_product' %}   
+                {% else %}
                 <li class="grid__item">
+                    
                   {% render 'card-product',
                     card_product: product,
                     media_aspect_ratio: section.settings.image_ratio,
@@ -161,6 +164,7 @@
                     section_id: section.id
                   %}
                 </li>
+              {% endif %}
               {%- endfor -%}
             </ul>
 
