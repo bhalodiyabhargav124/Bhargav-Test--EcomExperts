@@ -42,6 +42,7 @@ class CartItems extends HTMLElement {
   }
 
   onChange(event) {
+    console.log(event.target.value);
     this.updateQuantity(event.target.dataset.index, event.target.value, document.activeElement.getAttribute('name'));
   }
 
@@ -149,6 +150,28 @@ class CartItems extends HTMLElement {
       .finally(() => {
         this.disableLoading(line);
       });
+
+   
+      setTimeout(function(){
+      fetch('/cart.js', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        
+        if(data.items.some(item => item.id === 45149983473975) == false){
+          console.log("Item not in cart");
+          window.location.href = "/cart/change/?quantity=0&id=45139415925047";
+        }
+      }
+      
+      
+      );
+    }, 1000);
   }
 
   updateLiveRegions(line, message) {
@@ -210,3 +233,11 @@ if (!customElements.get('cart-note')) {
       }
   });
 };
+
+
+const selectElement = document.querySelector("#main-cart-items");
+
+selectElement.addEventListener("change", (event) => {
+  
+
+});

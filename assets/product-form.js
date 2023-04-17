@@ -13,7 +13,7 @@ if (!customElements.get('product-form')) {
       this.hideErrors = this.dataset.hideErrors === 'true';
     }
 
-    onSubmitHandler(evt) {
+    async onSubmitHandler(evt) {
       evt.preventDefault();
       if (this.submitButton.getAttribute('aria-disabled') === 'true') return;
 
@@ -28,6 +28,36 @@ if (!customElements.get('product-form')) {
       delete config.headers['Content-Type'];
 
       const formData = new FormData(this.form);
+
+
+      if (formData.get('id') == 45149983473975) {
+
+
+        var addData = {
+          'id': 45139415925047, /* for testing, change this to a variant ID on your store */
+          'quantity': 1
+        };
+
+        await fetch('/cart/add.js', {
+          body: JSON.stringify(addData),
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'xmlhttprequest' /* XMLHttpRequest is ok too, it's case insensitive */
+          },
+          method: 'POST'
+        }).then(function (response) {
+          return response.json();
+        }).then(function (json) {
+          /* we have JSON */
+          console.log(json)
+        }).catch(function (err) {
+          /* uh oh, we have error. */
+          console.error(err)
+        });
+
+
+      }
       if (this.cart) {
         formData.append('sections', this.cart.getSectionsToRender().map((section) => section.id));
         formData.append('sections_url', window.location.pathname);
@@ -39,7 +69,7 @@ if (!customElements.get('product-form')) {
         .then((response) => response.json())
         .then((response) => {
           if (response.status) {
-            publish(PUB_SUB_EVENTS.cartError, {source: 'product-form', productVariantId: formData.get('id'), errors: response.description, message: response.message});
+            publish(PUB_SUB_EVENTS.cartError, { source: 'product-form', productVariantId: formData.get('id'), errors: response.description, message: response.message });
             this.handleErrorMessage(response.description);
 
             const soldOutMessage = this.submitButton.querySelector('.sold-out-message');
@@ -54,7 +84,7 @@ if (!customElements.get('product-form')) {
             return;
           }
 
-          if (!this.error) publish(PUB_SUB_EVENTS.cartUpdate, {source: 'product-form', productVariantId: formData.get('id')});
+          if (!this.error) publish(PUB_SUB_EVENTS.cartUpdate, { source: 'product-form', productVariantId: formData.get('id') });
           this.error = false;
           const quickAddModal = this.closest('quick-add-modal');
           if (quickAddModal) {
