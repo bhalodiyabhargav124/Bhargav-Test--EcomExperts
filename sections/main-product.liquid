@@ -490,6 +490,10 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+
+      var x = document.getElementById("Option-{{ section.id }}-1");
+      x.selectedIndex = 0;
+
       function isIE() {
         const ua = window.navigator.userAgent;
         const msie = ua.indexOf('MSIE ');
