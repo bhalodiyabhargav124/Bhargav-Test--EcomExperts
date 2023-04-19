@@ -25,7 +25,6 @@
                 name="options[{{ option.name | escape }}]"
                 form="{{ product_form_id }}"
               >
-                <option value="">Unselected</option>
                 {%- for value in option.values -%}
                   <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
                     {{ value }}
