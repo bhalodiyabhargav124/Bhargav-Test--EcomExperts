@@ -47,6 +47,7 @@
       <label class="form__label" for="Variants-{{ section.id }}">{{ 'products.product.product_variants' | t }}</label>
       <div class="select">
         <select name="id" id="Variants-{{ section.id }}" class="select__select" form="{{ product_form_id }}">
+          <option value="">Select</option>
           {%- for variant in product.variants -%}
             <option
               {% if variant == product.selected_or_first_available_variant %}selected="selected"{% endif %}
