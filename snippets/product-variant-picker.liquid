@@ -44,8 +44,13 @@
     >
       {%- for option in product.options_with_values -%}
         <div class="product-form__input product-form__input--dropdown">
-        dfgdfg
-          <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+
+          {% if option.name == color  %}
+            color
+            {% else %}
+            ffffffffg
+            {%  endif %}
+            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
           <div class="select">
