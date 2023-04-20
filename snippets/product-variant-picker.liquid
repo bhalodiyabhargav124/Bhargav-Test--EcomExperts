@@ -44,15 +44,15 @@
     >
       {%- for option in product.options_with_values -%}
         <div class="product-form__input product-form__input--dropdown">
-
-          {% if option.name == "Color"  %}
-            color
-            {% else %}
-            ffffffffg
-            {%  endif %}
-            <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+<label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
+          {% if option.name == "Color"  %}
+            {% render 'product-variant-swatches', product: product, option: option, block: block %}
+            {% else %}
+            
+            
+            
           <div class="select">
             <select
               id="Option-{{ section.id }}-{{ forloop.index0 }}"
@@ -64,6 +64,7 @@
             </select>
             {% render 'icon-caret' %}
           </div>
+        {%  endif %}
         </div>
       {%- endfor -%}
 
