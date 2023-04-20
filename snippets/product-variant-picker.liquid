@@ -44,6 +44,7 @@
     >
       {%- for option in product.options_with_values -%}
         <div class="product-form__input product-form__input--dropdown">
+        dfgdfg
           <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
             {{ option.name }}
           </label>
@@ -70,7 +71,6 @@
 
 <noscript class="product-form__noscript-wrapper-{{ section.id }}">
   <div class="product-form__input{% if product.has_only_default_variant %} hidden{% endif %}">
-    fgfdgvf
     <label class="form__label" for="Variants-{{ section.id }}">
       {{- 'products.product.product_variants' | t -}}
     </label>
